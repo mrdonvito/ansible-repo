@@ -1,0 +1,10 @@
+---
+
+- hosts: ubuntu_machines
+  become: true
+  tasks:
+    - name: upgrade distros
+      apt:
+        update_cache: yes
+        upgrade: 'dist'
+
