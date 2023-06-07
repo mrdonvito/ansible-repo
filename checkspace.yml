@@ -1,0 +1,20 @@
+---
+
+- name: Query available disk space
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: Check disk space
+      command: df --output=pcent,avail /
+      register: disk_space_output
+
+    - name: Parse disk space output
+      set_fact:
+        disk_space_lines: "{{ disk_space_output.stdout_lines[1:] }}"
+
+    - name: Display disk space information
+      debug:
+        msg: "Available disk space on {{ inventory_hostname }}: {{ item.split()[1] }} ({{ item.split()[0] }} used)"
+      loop: "{{ disk_space_lines }}"
+
