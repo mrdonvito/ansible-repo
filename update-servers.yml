@@ -2,7 +2,7 @@
 
 - name: Update and upgrade Ubuntu servers
   hosts: all
-  become: yes
+  become: true
 
   tasks:
     - name: Update package cache
@@ -11,7 +11,7 @@
 
     - name: Upgrade packages
       apt:
-        upgrade: dist
+        upgrade: yes
         autoremove: yes
         autoclean: yes
 
