@@ -1,7 +1,7 @@
 ---
 
 - name: Reboot Ubuntu Servers if Required
-  hosts: ubuntu_servers
+  hosts: all
   gather_facts: yes
 
   tasks:
@@ -12,5 +12,7 @@
       ignore_errors: true
 
     - name: Reboot the server
-      reboot:
+      command: shutdown -r now "Rebooting server due to package updates"
+      async: 0
+      poll: 0
       when: reboot_check.rc == 0 and 'packages can be updated' in reboot_check.stdout
