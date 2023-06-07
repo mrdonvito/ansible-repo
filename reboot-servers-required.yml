@@ -1,0 +1,16 @@
+---
+
+- name: Check and Reboot Ubuntu Servers
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Check if system requires a reboot
+      command: needs-restarting -r
+      register: reboot_check
+      changed_when: false
+      ignore_errors: true
+
+    - name: Reboot the server
+      command: shutdown -r now
+      when: reboot_check.rc == 1
