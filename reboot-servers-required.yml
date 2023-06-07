@@ -6,11 +6,11 @@
 
   tasks:
     - name: Check if system requires a reboot
-      command: checkrestart -a -q
+      shell: /usr/lib/update-notifier/apt-check --human-readable
       register: reboot_check
       changed_when: false
       ignore_errors: true
 
     - name: Reboot the server
       command: shutdown -r now
-      when: reboot_check.rc == 0 and reboot_check.stdout != ""
+      when: reboot_check.rc == 0 and 'packages can be updated' in reboot_check.stdout
