@@ -1,0 +1,19 @@
+---
+- name: Update Servers
+  hosts: all
+  become: yes
+  
+  tasks:
+  - name: Update package cache
+    apt:
+      update_cache: yes
+
+  - name: Upgrade all packages
+    apt:
+      upgrade: dist
+
+  - name: Upgrade to the latest version of Ansible
+    pip:
+      name: ansible
+      state: latest
+
