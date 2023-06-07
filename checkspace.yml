@@ -15,6 +15,5 @@
 
     - name: Display disk space information
       debug:
-        msg: "Available disk space on {{ inventory_hostname }}: {{ item.split()[1] }} ({{ item.split()[0] }} used)"
+        msg: "Available disk space on {{ inventory_hostname }}: {{ (item.split()[1] | float / 1024 ** 2) | round(2) }} GB ({{ item.split()[0] }} used)"
       loop: "{{ disk_space_lines }}"
-
