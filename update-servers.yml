@@ -1,19 +1,17 @@
 ---
-- name: Update Servers
+
+- name: Update and upgrade Ubuntu servers
   hosts: all
   become: yes
-  
+
   tasks:
-  - name: Update package cache
-    apt:
-      update_cache: yes
+    - name: Update package cache
+      apt:
+        update_cache: yes
 
-  - name: Upgrade all packages
-    apt:
-      upgrade: dist
-
-  - name: Upgrade to the latest version of Ansible
-    pip:
-      name: ansible
-      state: latest
+    - name: Upgrade packages
+      apt:
+        upgrade: dist
+        autoremove: yes
+        autoclean: yes
 
