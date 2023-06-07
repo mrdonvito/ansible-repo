@@ -1,7 +1,7 @@
 ---
 
-- name: Check and Reboot Ubuntu Servers
-  hosts: all
+- name: Reboot Ubuntu Servers if Required
+  hosts: ubuntu_servers
   gather_facts: yes
 
   tasks:
@@ -12,5 +12,5 @@
       ignore_errors: true
 
     - name: Reboot the server
-      command: shutdown -r now
+      reboot:
       when: reboot_check.rc == 0 and 'packages can be updated' in reboot_check.stdout
