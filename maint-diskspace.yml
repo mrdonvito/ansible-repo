@@ -1,21 +1,20 @@
 ---
 
-- name: check disk space
-  hosts: all
+- name: Query disk space on Ubuntu servers
+  hosts: ubuntu_servers
+  become: true
+  gather_facts: true
+
   tasks:
-    - name: get disk usage
+    - name: Check disk space
       command: df -h
-      register: disk_usage
-    - name: check disk space available
-      shell: df -h / | awk 'NR==2 {print $5}'
-      register: disk_usage
-    # - name: send discord message when disk space is over 80%
-    #   uri:
-    #     url: "your-webhook"
-    #     method: POST
-    #     body_format: json
-    #     body: '{"content": "Disk space on {{ inventory_hostname }} is above 80%!"}'
-    #     headers:
-    #       Content-Type: application/json
-    #     status_code: 204
-    #   when: disk_usage.stdout[:-1]|int > 80
+      register: disk_space_output
+
+    - name: Parse disk space output
+      set_fact:
+        disk_space_data: "{{ disk_space_output.stdout_lines[1:] | map('regex_replace', '^\\S+\\s+', '') | map('split', None, 1) | list }}"
+
+    - name: Display disk space information
+      debug:
+        msg: "Mount: {{ item[5] }}, Available: {{ item[3] }}, Used: {{ item[2] }}"
+      loop: "{{ disk_space_data }}"
