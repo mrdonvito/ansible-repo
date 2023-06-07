@@ -1,13 +1,17 @@
 ---
 
-- name: check if system reboot is required
+- name: Check if Ubuntu servers need reboot
   hosts: all
-  become: yes
+  gather_facts: true
+
   tasks:
-    - name: check if system reboot is required
-      become: true
-      stat:
-        path: /var/run/reboot-required
-      register: reboot_required
-    - debug:
-        msg: "Reboot is required"
+    - name: Check if reboot is required
+      command: /usr/sbin/needrestart -r
+      changed_when: false
+      register: reboot_status
+      failed_when: reboot_status.rc > 2
+
+    - name: Display reboot status
+      debug:
+        msg: "Reboot required"
+      when: reboot_status.stdout.find("Reboot is required") != -1
