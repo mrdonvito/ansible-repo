@@ -12,3 +12,7 @@
     - debug:
         msg: "Reboot is required"
       when: reboot_required.stat.exists
+    - name: Reboot servers if required
+      become: true
+      command: shutdown -r now
+      when: reboot_required.stat.exists
