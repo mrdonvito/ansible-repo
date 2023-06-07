@@ -1,7 +1,7 @@
 ---
 
 - name: Check and Reboot Ubuntu Servers
-  hosts: ubuntu_servers
+  hosts: all
   gather_facts: yes
 
   tasks:
