@@ -1,8 +1,7 @@
 ---
 
 - hosts: ubuntu_servers
-  become: true
-  become_user: root
+  become: yes
   tasks:
   - name: install fail2ban
     apt:

@@ -6,7 +6,7 @@ docker4
 docker5
 docker6
 
-[ubuntu_machines]
+[ubuntu_servers]
 xen
 unifi
 nextcloud
