@@ -1,4 +1,4 @@
-[docker_machines]
+[docker_hosts]
 docker1
 docker2
 docker3
