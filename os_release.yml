@@ -1,0 +1,10 @@
+---
+
+- name: Find OS Release of hosts
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: Display OS Release
+      debug:
+        msg: "OS Release: {{ ansible_distribution_release }}"
