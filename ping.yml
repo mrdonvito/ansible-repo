@@ -1,0 +1,9 @@
+---
+
+- name: Ping Ubuntu machines
+  hosts: docker_hosts
+  gather_facts: false
+
+  tasks:
+    - name: Ping the hosts
+      ping:
