@@ -8,9 +8,8 @@
     - name: Backup original sshd_config
       become: yes
       become_method: sudo
-      copy:
-        src: /etc/ssh/sshd_config
-        dest: /etc/ssh/sshd_config.bak
+      command:
+        cmd: sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
       register: backup_result
 
     - name: Disable password authentication
