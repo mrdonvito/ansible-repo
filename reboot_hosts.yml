@@ -16,14 +16,19 @@
       debug:
         msg: "Reboot required"
       when: reboot_status.stdout.find("Reboot is required") != -1
-
+     
     - name: Reboot hosts
-      become: yes
-      reboot:
-        reboot_timeout: 300
-        pre_reboot_delay: 0
-        post_reboot_delay: 30
-        test_command: uptime
-        connect_timeout: 5
+      command: sudo shutdown -r now
+      async: 0
+      poll: 0
+
+    #- name: Reboot hosts
+    #  become: yes
+    #  reboot:
+    #    reboot_timeout: 300
+    #    pre_reboot_delay: 0
+    #    post_reboot_delay: 30
+    #    test_command: uptime
+    #    connect_timeout: 5
       #  reboot_timeout_action: force
       #when: reboot_status.stdout.find("Reboot is required") != -1
