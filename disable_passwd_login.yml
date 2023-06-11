@@ -6,20 +6,23 @@
 
   tasks:
     - name: Backup original sshd_config
+      become: yes
+      become_method: sudo
       copy:
         src: /etc/ssh/sshd_config
         dest: /etc/ssh/sshd_config.bak
       register: backup_result
 
     - name: Disable password authentication
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^#?PasswordAuthentication'
-        line: 'PasswordAuthentication no'
-        backup: yes
+      become: yes
+      become_method: sudo
+      command:
+        cmd: "sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config"
+        warn: false
       register: update_result
 
     - name: Restart SSH service
-      service:
-        name: sshd
-        state: restarted
+      become: yes
+      become_method: sudo
+      command:
+        cmd: sudo systemctl restart sshd
