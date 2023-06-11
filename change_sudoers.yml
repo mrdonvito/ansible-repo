@@ -1,6 +1,7 @@
 ---
 - hosts: all
   become: yes
+  become_method: sudo
   tasks:
     - name: Change the sudoers file
       lineinfile:
@@ -8,4 +9,4 @@
         state: present
         regexp: '^%sudo'
         line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-        validate: '/usr/sbin/visudo -cf %s'
+        validate: 'sudo /usr/sbin/visudo -cf %s'
