@@ -9,10 +9,11 @@
     - name: Update package cache
       apt:
         update_cache: yes
+      sudo: yes
 
     - name: Upgrade packages
       apt:
         upgrade: yes
         autoremove: yes
         autoclean: yes
-
+      sudo: yes
