@@ -9,10 +9,10 @@
       become: yes
       become_method: sudo
       command:
-        cmd: apt update
+        cmd: sudo apt update
 
     - name: Upgrade packages
       become: yes
       become_method: sudo
       command:
-        cmd: apt upgrade -y
+        cmd: sudo apt upgrade -y
