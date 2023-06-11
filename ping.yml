@@ -1,6 +1,6 @@
 ---
 
-- name: Ping Ubuntu machines
+- name: Ping all servers
   hosts: all
   gather_facts: false
 
