@@ -16,11 +16,11 @@
     - name: Install fail2ban
       command: sudo apt-get install -y fail2ban
 
-    - name: copy fail2ban configfiles
-      become: yes
-      become_method: sudo
-      command: 
-        cmd: sudo cp configfiles/debian-sshd-default.conf /etc/fail2ban/jail.d/debian-sshd-default.conf
+    #- name: copy fail2ban configfiles
+    #  become: yes
+    #  become_method: sudo
+    #  command: 
+    #    cmd: sudo cp configfiles/debian-sshd-default.conf /etc/fail2ban/jail.d/debian-sshd-default.conf
 
     - name: restart fail2ban
       become: yes
