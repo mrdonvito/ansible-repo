@@ -11,20 +11,17 @@
       changed_when: false
       register: reboot_status
       failed_when: reboot_status.rc > 2
-      when: ansible_distribution == "Ubuntu"
 
     - name: Display reboot status
       debug:
         msg: "Reboot required"
       when: reboot_status.stdout.find("Reboot is required") != -1
-      when: ansible_distribution == "Ubuntu"
      
     - name: Reboot hosts
       command: sudo shutdown -r now
       async: 0
       poll: 0
       when: reboot_status.stdout.find("Reboot is required") != -1
-      when: ansible_distribution == "Ubuntu"
     
     #- name: Reboot hosts
     #  become: yes
