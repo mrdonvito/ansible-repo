@@ -26,4 +26,4 @@
         test_command: uptime
         connect_timeout: 5
         reboot_timeout_action: force
-      when: reboot_status.stdout.find("Reboot is required") != -1
+      #when: reboot_status.stdout.find("Reboot is required") != -1
