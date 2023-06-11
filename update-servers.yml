@@ -9,10 +9,10 @@
       become: yes
       become_method: sudo
       command:
-        cmd: sudo apt update
+        cmd: sudo apt update -y --ask-become-pass
 
     - name: Upgrade packages
       become: yes
       become_method: sudo
       command:
-        cmd: sudo apt upgrade -y
+        cmd: sudo apt upgrade -y --ask-become-pass
