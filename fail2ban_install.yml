@@ -4,23 +4,12 @@
   become: yes
 
   tasks:
-    #- name: install fail2ban
-    #  become: yes
-    #  become_method: sudo
-    #  command: 
-    #    cmd: sudo apt update && sudo apt install fail2ban -y 
     - name: Update package cache
       command: sudo apt-get update
       changed_when: false
 
     - name: Install fail2ban
       command: sudo apt-get install -y fail2ban
-
-    #- name: copy fail2ban configfiles
-    #  become: yes
-    #  become_method: sudo
-    #  command: 
-    #    cmd: sudo cp configfiles/debian-sshd-default.conf /etc/fail2ban/jail.d/debian-sshd-default.conf
 
     - name: restart fail2ban
       become: yes
