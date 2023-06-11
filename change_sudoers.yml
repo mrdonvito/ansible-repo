@@ -5,7 +5,7 @@
   tasks:
     - name: Modify sudoers file with sed
       become: yes
-      become:_method: sudo
+      become_method: sudo
       command:
         cmd: "sed -i '/^%sudo/c\\%sudo ALL=(ALL) NOPASSWD: ALL' /etc/sudoers"
         warn: false
