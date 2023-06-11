@@ -10,9 +10,11 @@
       become_method: sudo
       command:
         cmd: sudo apt update -y
-
+      when: ansible_distribution == "Ubuntu"
+      
     - name: Upgrade packages
       become: yes
       become_method: sudo
       command:
         cmd: sudo apt upgrade -y
+      when: ansible_distribution == "Ubuntu"
