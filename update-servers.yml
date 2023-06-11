@@ -1,7 +1,7 @@
 ---
 
 - name: Update and upgrade Ubuntu servers
-  hosts: all
+  hosts: ubuntu_servers
   become: true
   become_method: sudo
   tasks:
