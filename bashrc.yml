@@ -12,11 +12,11 @@
         cmd: sudo cp ~/.bashrc ~/.bashrc.bak
       register: backup_result
 
-    - name: Disable password authentication
+    - name: Copy bashrc config file to remote servers 
       become: yes
       become_method: sudo
       copy:
-        src: /configfiles/bashrc
+        src: configfiles/bashrc
         dest: ~/
       register: update_result
 
