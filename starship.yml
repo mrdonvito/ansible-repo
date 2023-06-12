@@ -5,15 +5,15 @@
   become: true
 
   tasks:
-    - name: Backup original bashrc config
+    - name: Create config file
       become: yes
       become_method: sudo
       command:
-        cmd: sudo cp ~/.config/starship.toml ~/.config/starship.toml.bak
+        cmd: sudo touch ~/.config/starship.toml
       register: backup_result
       when: ansible_distribution == 'Ubuntu'
 
-    - name : Copy starship config file to remote servers
+    - name : Push config file to remote servers
       become: yes
       become_method: sudo
       copy:
