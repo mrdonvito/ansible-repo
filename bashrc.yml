@@ -11,6 +11,7 @@
       command:
         cmd: sudo cp ~/.bashrc ~/.bashrc.bak
       register: backup_result
+      when: ansible_distribution == 'Ubuntu'
 
     - name : Copy bashrc config file to remote servers
       become: yes
@@ -18,11 +19,13 @@
       copy:
         src: configfiles/.bashrc
         dest: /tmp/
+      when: ansible_distribution == 'Ubuntu'
 
     - name: Move config to appropriate location
       become: yes
       become_method: sudo
       command: sudo mv /tmp/.bashrc ~/.bashrc
+      when: ansible_distribution == 'Ubuntu'
 
  #   - name: Restart bashrc
  #     become: yes
