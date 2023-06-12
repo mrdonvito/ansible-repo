@@ -25,5 +25,6 @@
       command: sudo mv /tmp/.bashrc ~/.bashrc
 
     - name: Restart bashrc
-      command:
-        cmd: . ~/.bashrc
+      become: yes
+      become_method: sudo
+      command: sudo . ~/.bashrc
