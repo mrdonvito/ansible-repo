@@ -11,7 +11,7 @@
       command:
         cmd: sudo touch ~/.config/starship.toml
       register: backup_result
-      #when: ansible_distribution == 'Ubuntu'
+      when: ansible_distribution == 'Ubuntu'
 
     - name : Push config file to remote servers
       become: yes
@@ -19,10 +19,10 @@
       copy:
         src: configfiles/starship.toml
         dest: /tmp/
-      #when: ansible_distribution == 'Ubuntu'
+      when: ansible_distribution == 'Ubuntu'
 
     - name: Move config to appropriate location
       become: yes
       become_method: sudo
       command: sudo mv /tmp/starship.toml ~/.config/starship.toml
-      #when: ansible_distribution == 'Ubuntu'
+      when: ansible_distribution == 'Ubuntu'
