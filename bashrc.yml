@@ -1,0 +1,27 @@
+---
+
+- name: Update bashrc file on ubuntu servers
+  hosts: ubuntu_servers
+  become: true
+
+  tasks:
+    - name: Backup original bashrc config
+      become: yes
+      become_method: sudo
+      command:
+        cmd: sudo cp ~/.bashrc ~/.bashrc.bak
+      register: backup_result
+
+    - name: Disable password authentication
+      become: yes
+      become_method: sudo
+      copy:
+        src: /configfiles/bashrc
+        dest: ~/
+      register: update_result
+
+    - name: Restart bashrc
+      become: yes
+      become_method: sudo
+      command:
+        cmd: sudo . ~/.bashrc
