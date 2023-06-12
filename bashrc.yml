@@ -1,7 +1,7 @@
 ---
 
 - name: Update bashrc file on ubuntu servers
-  hosts: ubuntu_servers
+  hosts: all
   become: true
 
   tasks:
