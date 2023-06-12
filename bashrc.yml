@@ -13,9 +13,6 @@
       register: backup_result
 
     - name: Copy bashrc config file to remote servers 
-      become: yes
-      become_method: sudo
-      copy:
         src: configfiles/bashrc
         dest: ~/
       register: update_result
