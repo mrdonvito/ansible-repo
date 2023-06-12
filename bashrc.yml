@@ -24,8 +24,8 @@
       become_method: sudo
       command: sudo mv /tmp/.bashrc ~/.bashrc
 
-    #- name: Restart bashrc
-    #  become: yes
-    #  become_method: sudo
-    #  command:
-    #    cmd: sudo . ~/.bashrc
+    - name: Restart bashrc
+      become: yes
+      become_method: sudo
+      command:
+        cmd: sudo . ~/.bashrc
