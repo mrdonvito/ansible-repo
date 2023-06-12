@@ -12,10 +12,17 @@
         cmd: sudo cp ~/.bashrc ~/.bashrc.bak
       register: backup_result
 
-    - name: Copy bashrc config file to remote servers 
+    - name : Copy bashrc config file to remote servers
+      become: yes
+      become_method: sudo
+      copy:
         src: configfiles/bashrc
-        dest: ~/
-      register: update_result
+        dest: /tmp/
+
+    - name: Move config to appropriate location
+      become: yes
+      become_method: sudo
+      command: sudo mv /tmp/bashrc ~/
 
     - name: Restart bashrc
       become: yes
