@@ -16,7 +16,7 @@
       become_method: sudo
       copy:
         src: configfiles/debian-sshd-default.conf
-        dest: /etc/fail2ban/jail.d/debian-sshd-default.conf.1
+        dest: /tmp/
 
     - name: restart fail2ban
       become: yes
