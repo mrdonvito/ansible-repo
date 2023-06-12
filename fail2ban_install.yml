@@ -18,6 +18,11 @@
         src: configfiles/debian-sshd-default.conf
         dest: /tmp/
 
+    - name: Copy to directory fail2ban
+      become: yes
+      become_method: sudo
+      command: sudo mv /tmp/debian-sshd-default.conf /etc/fail2ban/jail.d/
+
     - name: restart fail2ban
       become: yes
       become_method: sudo
