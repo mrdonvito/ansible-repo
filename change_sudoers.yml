@@ -3,23 +3,9 @@
   become: yes
   become_method: sudo
   tasks:
-    - name: Modify sudoers file with sed
+    - name: Remove password prompt for sudoers
       become: yes
       become_method: sudo
       command:
         cmd: "sudo sed -i '/^%sudo/c\\%sudo ALL=(ALL) NOPASSWD: ALL' /etc/sudoers"
         warn: false
-    #- name: Change the sudoers file
-    #   lineinfile:
-    #    path: /etc/sudoers
-    #    state: present
-    #    regexp: '^%sudo'
-    #    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-    #    validate: 'sudo /usr/sbin/visudo -cf %s'
-    #- name: Modify sudoers file
-    #  ansible.posix.sudoers:
-    #    path: /etc/sudoers
-    #    content: |
-    #      # Add NOPASSWD configuration for the sudo group
-    #      %sudo ALL=(ALL) NOPASSWD: ALL
-    #    validate: /usr/sbin/visudo -cf %s
