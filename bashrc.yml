@@ -28,4 +28,4 @@
     #  become: yes
     #  become_method: sudo
       command: 
-        cmd: source ~/.bashrc
+        cmd: . ~/.bashrc
