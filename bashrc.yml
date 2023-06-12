@@ -27,4 +27,5 @@
     - name: Restart bashrc
       become: yes
       become_method: sudo
-      command: sudo . ~/.bashrc
+      command: 
+        cmd: sudo . ~/.bashrc
