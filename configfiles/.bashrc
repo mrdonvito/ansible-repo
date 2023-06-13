@@ -96,6 +96,7 @@ alias ..='cd ..'
 alias less='ls | less'
 alias up='sudo docker-compose up -d'
 alias down='sudo docker-compose down'
+alias wtr='curl wttr.in'
 
 
 # Alias definitions.
