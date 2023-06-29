@@ -1,7 +1,7 @@
 ---
 
 - name: Update sshd_config to disable all password login
-  hosts: ubuntu_servers
+  hosts: all
   become: true
 
   tasks:
