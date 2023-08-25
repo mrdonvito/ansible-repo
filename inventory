@@ -4,14 +4,12 @@ docker2
 docker3
 docker4
 docker5
-docker6
 
 [ubuntu_servers]
 xen
 unifi
 nextcloud
 ninja
-remotely
 
 [other]
 pi
