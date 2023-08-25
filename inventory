@@ -10,6 +10,7 @@ xen
 unifi
 nextcloud
 ninja
+haproxy
 
 [other]
 pi
