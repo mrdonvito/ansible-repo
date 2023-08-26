@@ -1,0 +1,17 @@
+---
+- name: Reboot Servers if Required
+  hosts: all
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Check for pending reboots
+      ansible.builtin.shell: /usr/lib/update-notifier/update-motd-reboot-required --quiet
+      register: reboot_required
+      changed_when: false
+      ignore_errors: true
+
+    - name: Reboot the server
+      ansible.builtin.reboot:
+        reboot_timeout: 0
+      when: reboot_required.rc == 0
