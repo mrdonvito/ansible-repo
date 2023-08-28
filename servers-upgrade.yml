@@ -1,0 +1,19 @@
+---
+- name: Update and Upgrade Ubuntu packages
+  hosts: all
+  become: yes  # This allows the tasks to run with elevated privileges (sudo)
+
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+      become: yes
+
+    - name: Upgrade packages
+      apt:
+        upgrade: safe
+        autoremove: yes  # Remove unused packages after upgrading
+        autoclean: yes   # Remove cached package files
+        allow_unauthenticated: yes  # Allow installation of packages without GPG keys (use with caution)
+      become: yes
+  
