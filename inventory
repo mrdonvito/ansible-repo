@@ -4,13 +4,13 @@ docker2
 docker3
 docker4
 docker5
+docker7
 
 [ubuntu_servers]
 xen
 unifi
 nextcloud
-ninja
 haproxy
+wordpress
 
 [other]
-pi
